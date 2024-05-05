@@ -13,7 +13,7 @@
       "type": "http",
       "documentation": "Global rules",
       "method": "all",
-      "endpoint": "*",
+      "endpoint": "api/*",
       "responses": [
         {
           "uuid": "c4d41c75-61bd-4cf5-ba3a-f592eb4adb9c",
@@ -50,7 +50,7 @@
       "type": "crud",
       "documentation": "Endpoint performing CRUD operations on a data bucket",
       "method": "",
-      "endpoint": "users",
+      "endpoint": "api/users",
       "responses": [
         {
           "uuid": "b80e6dc0-ae2d-4955-b07b-74859ac13b1b",
@@ -79,11 +79,11 @@
       "type": "http",
       "documentation": "Generate random body (JSON, text, CSV, etc) with templating",
       "method": "get",
-      "endpoint": "template",
+      "endpoint": "hello",
       "responses": [
         {
           "uuid": "9bcbf9d4-2f5f-4929-a947-7659b037e54d",
-          "body": "{\n  \"Templating example\": \"For more information about templating, click the blue 'i' above this editor\",\n  \"users\": [\n    {{# repeat (queryParam 'total' '10') }}\n      {\n        \"userId\": \"{{ faker 'number.int' min=10000 max=100000 }}\",\n        \"firstname\": \"{{ faker 'person.firstName' }}\",\n        \"lastname\": \"{{ faker 'person.lastName' }}\",\n        \"friends\": [\n          {{# repeat (faker 'number.int' 5) }}\n            {\n              \"id\": \"{{ faker 'string.uuid' }}\"\n            }\n          {{/ repeat }}\n        ]\n      },\n    {{/ repeat }}\n  ],\n  \"total\": \"{{queryParam 'total' '10'}}\"\n}",
+          "body": "\"https://github.com/ElMehdiBen/elmehdiben.github.io/raw/master/data.docx\"",
           "latency": 0,
           "statusCode": 200,
           "label": "Creates 10 random users, or the amount specified in the 'total' query param",
@@ -104,175 +104,19 @@
       "responseMode": null
     },
     {
-      "uuid": "ede4842f-5885-4ae4-b5fe-41fd4480863e",
+      "uuid": "c0060a5a-89a5-4e92-be93-c030858246a4",
       "type": "http",
-      "documentation": "Use multiple responses with rules",
-      "method": "post",
-      "endpoint": "content/:param1",
-      "responses": [
-        {
-          "uuid": "ee9ac1c2-83cf-42c3-a431-f961021efaf6",
-          "body": "{\n  \"Rules example\": \"Default response. Served if route param 'param1' is not present.\"\n}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Default response",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "1bb9fa7a-3fa3-4a49-b566-d7c0758a5476",
-          "body": "{\n  \"Rules example\": \"Content XYZ. Served if route param 'param1' equals 'xyz'. (See in 'Rules' tab)\"\n}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Content XYZ",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "params",
-              "modifier": "param1",
-              "value": "xyz",
-              "invert": false,
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "f0f83c24-863a-45cc-bdad-054fc2582441",
-          "body": "{\n  \"Rules example\": \"Content not found. Served if route param 'param1' is not equal to 'xyz'. (See in 'Rules' tab)\"\n}\n",
-          "latency": 0,
-          "statusCode": 404,
-          "label": "Content not found",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "params",
-              "modifier": "param1",
-              "value": "^(?!.*xyz).*$",
-              "invert": false,
-              "operator": "regex"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null
-    },
-    {
-      "uuid": "f36fef9d-3458-4f4c-8874-496c85d088dc",
-      "type": "http",
-      "documentation": "Serve a file dynamically depending on the path param 'pageName'.",
+      "documentation": "Generate random body (JSON, text, CSV, etc) with templating",
       "method": "get",
-      "endpoint": "file/:pageName",
+      "endpoint": "world",
       "responses": [
         {
-          "uuid": "2874529b-68dd-4d1d-91d5-3e22e3e3d898",
-          "body": "",
+          "uuid": "6c204c0d-5fb8-4f5c-b378-ef4531a151b2",
+          "body": "\"Woooorld\"",
           "latency": 0,
           "statusCode": 200,
-          "label": "Templating is also supported in file path",
-          "headers": [
-            {
-              "key": "Content-Type",
-              "value": "text/html"
-            }
-          ],
-          "bodyType": "INLINE",
-          "filePath": "./page{{urlParam 'pageName'}}.html",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null
-    },
-    {
-      "uuid": "a2951466-45bf-41bc-a0a4-a305518cb10e",
-      "type": "http",
-      "documentation": "Path supports various patterns",
-      "method": "put",
-      "endpoint": "path/with/pattern(s)?/*",
-      "responses": [
-        {
-          "uuid": "b55e9d1c-fd09-4f13-8714-d6cef3eb1f67",
-          "body": "The current path will match the following routes: \nhttp://localhost:3000/path/with/pattern/\nhttp://localhost:3000/path/with/patterns/\nhttp://localhost:3000/path/with/patterns/anything-else\n\nLearn more about Mockoon's routing: https://mockoon.com/docs/latest/api-endpoints/routing/",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [
-            {
-              "key": "Content-Type",
-              "value": "text/plain"
-            }
-          ],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null
-    },
-    {
-      "uuid": "29549aaa-67ec-4452-a440-506bf94f9974",
-      "type": "http",
-      "documentation": "Can Mockoon forward or record entering requests?",
-      "method": "get",
-      "endpoint": "forward-and-record",
-      "responses": [
-        {
-          "uuid": "9a4d2d05-5092-4f94-ab66-dab0386ab1b5",
-          "body": "Mockoon can also act as a proxy and forward all entering requests that are not caught by declared routes. \nYou can activate this option in the environment settings ('cog' icon in the upper right corner). \nTo learn more: https://mockoon.com/docs/latest/server-configuration/proxy-mode/\n\nAs always, all entering requests, and responses from the proxied server will be recorded ('clock' icon in the upper right corner).\nTo learn more: https://mockoon.com/docs/latest/logging-and-recording/requests-logging/",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [
-            {
-              "key": "Content-Type",
-              "value": "text/plain"
-            }
-          ],
+          "label": "Creates 10 random users, or the amount specified in the 'total' query param",
+          "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
@@ -304,19 +148,7 @@
     },
     {
       "type": "route",
-      "uuid": "ede4842f-5885-4ae4-b5fe-41fd4480863e"
-    },
-    {
-      "type": "route",
-      "uuid": "f36fef9d-3458-4f4c-8874-496c85d088dc"
-    },
-    {
-      "type": "route",
-      "uuid": "a2951466-45bf-41bc-a0a4-a305518cb10e"
-    },
-    {
-      "type": "route",
-      "uuid": "29549aaa-67ec-4452-a440-506bf94f9974"
+      "uuid": "c0060a5a-89a5-4e92-be93-c030858246a4"
     }
   ],
   "proxyMode": false,
