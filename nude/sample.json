@@ -2,12 +2,12 @@
     "articles" : [
         {
             "name": "ABC",
-            "category": "Meat",
+            "category": "oranges",
             "image": "img/img.png"
         },
         {
             "name": "ABCD",
-            "category": "Fruit",
+            "category": "fresh-meat",
             "image": "img/img.png"
         }
     ]
