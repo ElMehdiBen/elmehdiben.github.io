@@ -1,0 +1,9 @@
+{
+    "articles" : [
+        {
+            "name": "ABC",
+            "category": "Meat",
+            "image": "img/img.png"
+        }
+    ]
+}
