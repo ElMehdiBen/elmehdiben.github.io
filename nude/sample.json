@@ -4,6 +4,11 @@
             "name": "ABC",
             "category": "Meat",
             "image": "img/img.png"
+        },
+        {
+            "name": "ABCD",
+            "category": "Fruit",
+            "image": "img/img.png"
         }
     ]
 }
