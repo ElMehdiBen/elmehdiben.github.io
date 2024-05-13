@@ -3,11 +3,13 @@
         {
             "name": "ABC",
             "category": "oranges",
+            "price": "50 Dhs",
             "image": "img/img.png"
         },
         {
             "name": "ABCD",
             "category": "fresh-meat",
+            "price": "200 Dhs",
             "image": "img/img.png"
         }
     ]
