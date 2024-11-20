@@ -1,0 +1,176 @@
+{
+  "uuid": "3a837135-fc65-4bcb-bb39-c2617e801e1c",
+  "lastMigration": 33,
+  "name": "Openai",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "78104e54-8ef7-41a4-b74d-376dc8f56738",
+      "type": "http",
+      "documentation": "Global rules",
+      "method": "all",
+      "endpoint": "*",
+      "responses": [
+        {
+          "uuid": "c886690f-8d99-4548-bd76-35bb4a25a4b9",
+          "body": "{\n  \"error\": \"Unauthorized\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "Requires the presence of an 'Authorization' header",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "operator": "null",
+              "invert": false,
+              "value": ""
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": "FALLBACK",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "5e21402e-5f61-4068-9381-84a48a580e84",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/models",
+      "responses": [
+        {
+          "uuid": "e296b0dc-8c44-4e35-9266-924a183031bc",
+          "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"gpt-4-1106-preview\",\n      \"object\": \"model\",\n      \"created\": 1698957206,\n      \"owned_by\": \"system\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "053e61cf-d63d-403f-9d81-546baba0ca21",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "v1/chat/completions",
+      "responses": [
+        {
+          "uuid": "c46cade9-77ff-4637-9c08-4c497e0d99f4",
+          "body": "{\n    \"id\": \"chatcmpl-AVcdrdAPsrk0K94JueFdWjfffi9ty\",\n    \"object\": \"chat.completion\",\n    \"created\": 1732100071,\n    \"model\": \"gpt-4o-2024-08-06\",\n    \"choices\": [\n        {\n            \"index\": 0,\n            \"message\": {\n                \"role\": \"assistant\",\n                \"content\": \"Of course, I’d be happy to help! Could you specify a bit more what you need assistance with regarding teams? Are you referring to Microsoft Teams or team dynamics in a work or sports setting? The more details you provide, the better I can assist you.\",\n                \"refusal\": null\n            },\n            \"logprobs\": null,\n            \"finish_reason\": \"stop\"\n        }\n    ],\n    \"usage\": {\n        \"prompt_tokens\": 11,\n        \"completion_tokens\": 53,\n        \"total_tokens\": 64,\n        \"prompt_tokens_details\": {\n            \"cached_tokens\": 0,\n            \"audio_tokens\": 0\n        },\n        \"completion_tokens_details\": {\n            \"reasoning_tokens\": 0,\n            \"audio_tokens\": 0,\n            \"accepted_prediction_tokens\": 0,\n            \"rejected_prediction_tokens\": 0\n        }\n    },\n    \"system_fingerprint\": \"fp_831e067d82\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "78104e54-8ef7-41a4-b74d-376dc8f56738"
+    },
+    {
+      "type": "route",
+      "uuid": "5e21402e-5f61-4068-9381-84a48a580e84"
+    },
+    {
+      "type": "route",
+      "uuid": "053e61cf-d63d-403f-9d81-546baba0ca21"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "2215f940-f1ea-403b-9287-6db076ff4695",
+      "id": "gacp",
+      "name": "Abstracts",
+      "documentation": "",
+      "value": "[\n  {{#repeat 50}}\n  {\n    \"title\": \"{{faker 'string.alphanumeric' 100}}\"\n  }\n  {{/repeat}}\n]"
+    }
+  ],
+  "callbacks": []
+}
