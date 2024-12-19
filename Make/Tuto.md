@@ -83,7 +83,8 @@ Now, our automation will trigger every time a new lead is added to the sheet!
      ```
      New Lead Received!  
      Name: {{Customer Name}}  
-     Email: {{Customer Email}}  
+     Email: {{Customer Email}}
+     Phone: {{Customer Phone}}
      Message: {{Client Message}}  
      Please follow up on this lead ASAP.
      ```
@@ -105,7 +106,8 @@ Once set, every new row will trigger a notification in Teams.
      ```
      You have a new lead:
      Name: {{Customer Name}}  
-     Email: {{Customer Email}}  
+     Email: {{Customer Email}}
+     Phone: {{Customer Phone}}
      Message: {{Client Message}}  
      Check Microsoft Teams for more details.
      ```  
@@ -125,8 +127,9 @@ Now, we’re notified immediately via both Teams and email whenever a new row is
       ```
       You are a customer service representative for a company. Generate a polite, professional, and friendly email response to this client inquiry:  
       Name: {{Customer Name}}  
-      Email: {{Customer Email}}  
-      Message: {{Client Message}}  
+      Company: {{Customer Company}}
+      Role: {{Customer Role}}
+      Message: {{Client Message}}
       Ensure the tone is warm and enthusiastic. Thank the client for reaching out and briefly address their question.
       ```  
 6. Save the configuration.  
