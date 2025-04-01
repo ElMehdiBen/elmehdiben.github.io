@@ -67,5 +67,3 @@
 48. Quelles sont vos pratiques pour les tests automatisés dans le cadre de DevOps ?
 49. Comment collaborez-vous entre les équipes de développement et d’opérations ?
 50. Utilisez-vous des solutions d’infrastructure as code (IaC) comme Terraform ou CloudFormation ?
-
-Ces questions couvrent un large éventail de sujets pour obtenir une vue d’ensemble détaillée du fonctionnement d’un département informatique dans une grande entreprise. Si vous avez besoin d’approfondir un domaine spécifique ou d’adapter certaines questions, n’hésitez pas à me le demander !
