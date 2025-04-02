@@ -1,7 +1,7 @@
 ## Questions
 
 ### Piles technologiques pour les applications et le développement web
-1. Quelles sont les principales piles technologiques (stacks) utilisées pour le développement des applications dans votre département ? ==ABCD==
+1. Quelles sont les principales piles technologiques (stacks) utilisées pour le développement des applications dans votre département ? == ABCD ==
 2. Quels langages de programmation sont les plus couramment utilisés (par exemple, Java, Python, C#, JavaScript) ?
 3. Quels frameworks utilisez-vous pour le développement web (par exemple, React, Angular, Vue.js, Spring, Django) ?
 4. Utilisez-vous des CMS ou des plateformes spécifiques pour le développement web (par exemple, WordPress, Drupal) ?
