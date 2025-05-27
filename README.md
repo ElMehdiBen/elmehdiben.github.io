@@ -1,4 +1,7 @@
 ```mermaid
+---
+displayMode: compact
+---
 gantt
     title RoadMap - FabLab
     dateFormat YYYY-MM-DD
