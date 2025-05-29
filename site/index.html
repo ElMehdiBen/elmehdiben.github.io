@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Iframe Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Avoid duplicate buttons
+        if (document.getElementById('floating-btn')) return;
+
+        // Create iframe
+        const iframe = document.createElement('iframe');
+        iframe.id = 'floating-iframe';
+        iframe.src = 'https://ai-bot.leyton.com/chatbot/Yy5LoIKixlsskQhw';
+        Object.assign(iframe.style, {
+            position: 'fixed',
+            bottom: '80px',
+            right: '20px',
+            width: '500px',
+            height: '700px',
+            border: 'none',
+            borderRadius: '12px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+            zIndex: '9998',
+            display: 'none',
+            background: '#fff'
+        });
+
+        // Create button
+        const btn = document.createElement('button');
+        btn.id = 'floating-btn';
+        const icon = document.createElement('img');
+        icon.src = 'https://via.placeholder.com/30'; // Replace with '/path/to/icon.png'
+        icon.alt = 'Toggle Iframe';
+        icon.style.width = '30px';
+        icon.style.height = '30px';
+        btn.appendChild(icon);
+        btn.title = 'Toggle Iframe';
+        Object.assign(btn.style, {
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            width: '50px',
+            height: '50px',
+            borderRadius: '50%',
+            border: 'none',
+            backgroundColor: '#0071e3',
+            cursor: 'pointer',
+            zIndex: '9999',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
+        });
+
+        // Toggle iframe on click
+        btn.onclick = () => {
+            iframe.style.display = iframe.style.display === 'none' ? 'block' : 'none';
+        };
+
+        // Append to document
+        document.body.appendChild(iframe);
+        document.body.appendChild(btn);
+    });
+    </script>
+</head>
+<body>
+    <h1>Floating Iframe Test Page</h1>
+    <p>Click the floating button at the bottom-right to toggle the iframe.</p>
+</body>
+</html>
