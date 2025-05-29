@@ -10,45 +10,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<script>
-			(function () {
-				    // Avoid duplicate buttons
-				    if (document.getElementById('floating-btn')) return;
-				
-				    // Create button
-				    const btn = document.createElement('button');
-				    btn.id = 'floating-btn';
-				    const icon = document.createElement('img');
-				    icon.src = 'icon.png'; // Update with actual path to icon.png
-				    icon.alt = 'Open Link';
-				    icon.style.width = '30px';
-				    icon.style.height = '30px';
-				    btn.appendChild(icon);
-				    btn.title = 'Open Link';
-				    Object.assign(btn.style, {
-				        position: 'fixed',
-				        bottom: '20px',
-				        right: '20px',
-				        width: '50px',
-				        height: '50px',
-				        borderRadius: '50%',
-				        border: 'none',
-				        backgroundColor: '#0071e3',
-				        cursor: 'pointer',
-				        zIndex: '9999',
-				        display: 'flex',
-				        alignItems: 'center',
-				        justifyContent: 'center',
-				        boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
-				    });
-				
-				    // Open link on click
-				    btn.onclick = () => window.open('https://ai-bot.leyton.com/chatbot/Yy5LoIKixlsskQhw', '_blank');
-				
-				    // Append to document
-				    document.body.appendChild(btn);
-				})();
-		</script>
 	</head>
 	<body class="is-preload">
 
