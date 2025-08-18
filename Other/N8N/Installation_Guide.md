@@ -1,223 +1,203 @@
----
-title: Guide d'installation de N8N sur Linux avec Docker Compose
-  (Pseudo-Production)
----
+Installation de n8n sur Linux avec Docker Compose, PostgreSQL et Nginx
+Ce guide fournit des instructions détaillées pour configurer n8n, un outil d'automatisation des flux de travail, sur un système Linux en utilisant Docker Compose. La configuration inclut PostgreSQL comme base de données et Nginx comme proxy inverse pour HTTPS.
+Prérequis
 
-# 1. Objectif
+Un serveur Linux (par exemple, Ubuntu 20.04 ou ultérieur)
+Docker installé
+Docker Compose installé
+Un nom de domaine pointant vers l'adresse IP de votre serveur
+Connaissances de base des commandes de terminal et de Docker
 
-Mettre en place une instance n8n stable sur un serveur Linux local en
-utilisant Docker Compose, avec une configuration adaptée pour un
-déploiement en pseudo-production (utilisation réelle mais sans exigences
-de haute disponibilité).
+Étape 1 : Installer Docker et Docker Compose
 
-# 2. Prérequis
+Mettre à jour l'index des paquets :
+sudo apt update
 
-Système d'exploitation\
-- Linux : Ubuntu Server 22.04 LTS (recommandé, stable et maintenu
-jusqu'en 2027).\
-\
-Logiciels\
-- Docker Engine : 24.x (version stable LTS).\
-- Docker Compose : v2.24+.\
-- n8n : Dernière version stable 1.x (ex: n8nio/n8n:1.71.1).
 
-# 3. Préparation du serveur
+Installer Docker :
+sudo apt install -y docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
 
-\`\`\`\
-sudo apt update && sudo apt upgrade -y\
-\
-sudo apt install -y ca-certificates curl gnupg lsb-release\
-\
-curl -fsSL https://get.docker.com \| sudo bash\
-\
-docker \--version\
-docker compose version\
-\`\`\`
 
-# 4. Structure du projet
+Installer Docker Compose :
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
-\`\`\`\
-mkdir -p /opt/n8n\
-cd /opt/n8n\
-mkdir .n8n\
-\`\`\`
 
-# 5. Fichier docker-compose.yml
+Vérifier les installations :
+docker --version
+docker-compose --version
 
-\`\`\`yaml\
-version: \"3.8\"\
-\
-services:\
-n8n:\
-image: n8nio/n8n:1.71.1\
-container_name: n8n\
-restart: unless-stopped\
-ports:\
-- \"5678:5678\"\
-environment:\
-- GENERIC_TIMEZONE=Europe/Paris\
-- GENERIC_LOCALE=fr\
-- N8N_BASIC_AUTH_ACTIVE=true\
-- N8N_BASIC_AUTH_USER=\${N8N_USER}\
-- N8N_BASIC_AUTH_PASSWORD=\${N8N_PASSWORD}\
-- N8N_HOST=\${N8N_HOST}\
-- N8N_PORT=5678\
-- N8N_PROTOCOL=https\
-- NODE_ENV=production\
-- EXECUTIONS_PROCESS=main\
-- DB_TYPE=sqlite\
-- DB_SQLITE_VACUUM_ON_STARTUP=true\
-- N8N_EDITOR_BASE_URL=https://\${N8N_HOST}/\
-- N8N_PUBLIC_API_DISABLED=false\
-volumes:\
-- ./n8n_data:/home/node/.n8n\
-\`\`\`
 
-# 6. Variables d'environnement
 
-Créer un fichier \`.env\` dans \`/opt/n8n\` :\
-\
-\`\`\`env\
-N8N_USER=admin\
-N8N_PASSWORD=mot_de_passe_secure\
-N8N_HOST=automation.mondomaine.com\
-NODE_ENV=production\
-\`\`\`\
-\
-Notes :\
-- Pour un usage local sans domaine : mettre \`N8N_HOST=127.0.0.1\`.\
-- En pseudo-production, privilégier une authentification forte.\
-- Prévoir un reverse proxy (Nginx/Traefik + SSL) si exposé à Internet.
+Étape 2 : Configurer la structure des répertoires
 
-# 7. Lancement de l'application
+Créer un répertoire de projet pour n8n :
+mkdir n8n && cd n8n
 
-\`\`\`\
-docker compose up -d\
-docker compose logs -f\
-\`\`\`\
-Accéder à : http://\<IP_SERVEUR\>:5678
 
-# 8. Bonnes pratiques en pseudo-production
+Créer des sous-répertoires pour les fichiers de configuration :
+mkdir -p nginx/certs n8n-data postgres-data
 
-\- Sauvegardes régulières du répertoire \`./n8n_data/\`.\
-- Mises à jour avec \`docker compose pull && docker compose up -d\`.\
-- Sécurité : HTTPS via reverse proxy, authentification basique activée,
-firewall.
 
-# 9. Schéma d'architecture simplifiée
 
-\[Client navigateur\] \-\--\> \[Reverse Proxy Nginx/Traefik + SSL\]
-\-\--\> \[N8N Docker Container\]\
-\|\
-\[Volume / n8n_data\]
-
-# 10. Conclusion
-
-Cette configuration permet un déploiement stable et sécurisé de n8n en
-pseudo-production.\
-\
-Pour une production critique : prévoir une base PostgreSQL externe, du
-monitoring et un reverse proxy SSL automatisé.
-
-Docker Compose file avec base PostgreSQL:
-
-\`\`\`yaml
-
-version: \'3.7\'
+Étape 3 : Créer le fichier Docker Compose
+Créez un fichier docker-compose.yml dans le répertoire n8n avec le contenu suivant :
+version: '3.8'
 
 services:
+  postgres:
+    image: postgres:15
+    container_name: n8n_postgres
+    environment:
+      - POSTGRES_USER=n8n
+      - POSTGRES_PASSWORD=n8n_password
+      - POSTGRES_DB=n8n
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U n8n"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
 
-db:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    environment:
+      - N8N_HOST=votre-domaine.com
+      - N8N_PROTOCOL=https
+      - N8N_PORT=5678
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD=n8n_password
+      - NODE_ENV=production
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./n8n-data:/home/node/.n8n
+    restart: unless-stopped
 
-image: postgres:14
+  nginx:
+    image: nginx:latest
+    container_name: n8n_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/certs:/etc/nginx/certs
+    depends_on:
+      - n8n
+    restart: unless-stopped
 
-environment:
+Notes :
 
-\- POSTGRES_USER=n8n
+Remplacez votre-domaine.com par votre nom de domaine réel.
+Les volumes postgres-data et n8n-data permettent de conserver les données de PostgreSQL et de n8n.
+Le répertoire nginx/certs stockera les certificats SSL.
 
-\- POSTGRES_PASSWORD=n8npass
+Étape 4 : Configurer Nginx pour HTTPS
 
-\- POSTGRES_DB=n8n
+Obtenir les certificats SSL :Utilisez Certbot pour obtenir des certificats SSL de Let's Encrypt :
+sudo apt install -y certbot python3-certbot-nginx
+certbot certonly --standalone -d votre-domaine.com
 
-volumes:
+Les certificats seront stockés dans /etc/letsencrypt/live/votre-domaine.com/.
 
-\- postgres_data:/var/lib/postgresql/data
+Copier les certificats dans le répertoire Nginx :
+sudo cp /etc/letsencrypt/live/votre-domaine.com/fullchain.pem nginx/certs/
+sudo cp /etc/letsencrypt/live/votre-domaine.com/privkey.pem nginx/certs/
+sudo chown -R 1000:1000 nginx/certs
 
-n8n:
 
-image: n8nio/n8n
+Créer la configuration Nginx :Créez un fichier nginx/nginx.conf avec le contenu suivant :
 
-ports:
 
-\- \"5678:5678\"
+worker_processes 1;
 
-environment:
-
-\- DB_TYPE=postgresdb
-
-\- DB_POSTGRESDB_HOST=db
-
-\- DB_POSTGRESDB_DATABASE=n8n
-
-\- DB_POSTGRESDB_USER=n8n
-
-\- DB_POSTGRESDB_PASSWORD=n8npass
-
-\- N8N_BASIC_AUTH_ACTIVE=true
-
-\- N8N_BASIC_AUTH_USER=admin
-
-\- N8N_BASIC_AUTH_PASSWORD=strongpass
-
-\- N8N_HOST=n8n.yourdomain.com
-
-\- WEBHOOK_TUNNEL_URL=https://n8n.yourdomain.com
-
-depends_on:
-
-\- db
-
-volumes:
-
-\- n8n_data:/home/node/.n8n
-
-volumes:
-
-postgres_data:
-
-n8n_data:
-
-\`\`\`
-
-Fichier de configuration secure proxy simple :
-
-\`\`\`
-
-server {
-
-listen 443 ssl;
-
-server_name n8n.yourdomain.com;
-
-ssl_certificate /etc/letsencrypt/live/n8n.yourdomain.com/fullchain.pem;
-
-ssl_certificate_key
-/etc/letsencrypt/live/n8n.yourdomain.com/privkey.pem;
-
-location / {
-
-proxy_pass http://localhost:5678;
-
-proxy_set_header Host \$host;
-
-proxy_set_header X-Real-IP \$remote_addr;
-
-proxy_set_header X-Forwarded-For \$proxy_add_x\_forwarded_for;
-
-proxy_set_header X-Forwarded-Proto \$scheme;
-
+events {
+  worker_connections 1024;
 }
 
+http {
+  server {
+    listen 80;
+    server_name votre-domaine.com;
+
+    # Rediriger HTTP vers HTTPS
+    location / {
+      return 301 https://$host$request_uri;
+    }
+  }
+
+  server {
+    listen 443 ssl;
+    server_name votre-domaine.com;
+
+    ssl_certificate /etc/nginx/certs/fullchain.pem;
+    ssl_certificate_key /etc/nginx/certs/privkey.pem;
+
+    location / {
+      proxy_pass http://n8n:5678;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+    }
+  }
 }
 
-\`\`\`
+Note : Remplacez votre-domaine.com par votre nom de domaine réel.
+Étape 5 : Démarrer les services
+
+Exécutez Docker Compose :
+docker-compose up -d
+
+
+Vérifiez que tous les conteneurs sont en cours d'exécution :
+docker ps
+
+
+
+Étape 6 : Accéder à n8n
+
+Ouvrez votre navigateur et accédez à https://votre-domaine.com.
+Vous devriez voir l'interface de n8n. Connectez-vous et commencez à créer des flux de travail.
+
+Étape 7 : Maintenance
+
+Mettre à jour n8n : Pour passer à la dernière version, téléchargez les dernières images et recréez les conteneurs :
+docker-compose pull
+docker-compose up -d
+
+
+Renouveler les certificats SSL : Configurez une tâche cron pour renouveler automatiquement les certificats :
+sudo crontab -e
+
+Ajoutez la ligne suivante :
+0 0 1 * * certbot renew --quiet && docker-compose -f /chemin/vers/n8n/docker-compose.yml restart nginx
+
+
+
+Dépannage
+
+Vérifier les journaux :
+docker logs n8n
+docker logs n8n_postgres
+docker logs n8n_nginx
+
+
+Problèmes courants :
+
+Assurez-vous que le DNS de votre domaine est correctement configuré pour pointer vers l'adresse IP de votre serveur.
+Vérifiez que les ports 80 et 443 sont ouverts dans votre pare-feu.
+Vérifiez les permissions des fichiers dans le répertoire nginx/certs.
+
+
