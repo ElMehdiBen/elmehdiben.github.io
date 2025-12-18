@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Achgal Insights - Intelligence Marketing</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FA830B", // Orange accent
+                        secondary: "#D80C5C", // Pink/Red accent
+                        "background-light": "#F8F9FA", // Light grey/off-white like FlyHigh
+                        "background-dark": "#0F172A", // Dark blue-grey
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#1E293B",
+                    },
+                    fontFamily: {
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                        sans: ["Plus Jakarta Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                        '3xl': '2.5rem',
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 font-sans transition-colors duration-300">
+    <nav
+        class="w-full py-6 px-6 lg:px-12 flex items-center justify-between sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+        <div class="flex items-center gap-2">
+            <div
+                class="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold">
+                A</div>
+            <span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Achgal Insights</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600 dark:text-gray-300">
+            <a class="hover:text-primary transition-colors" href="#">Solutions</a>
+            <a class="hover:text-primary transition-colors" href="#">Plateforme</a>
+            <a class="hover:text-primary transition-colors" href="#">Ressources</a>
+            <button class="text-gray-900 dark:text-white hover:text-primary">
+                <span class="material-icons-round text-xl align-middle">search</span>
+            </button>
+        </div>
+        <div class="flex items-center gap-4">
+            <a class="hidden md:block text-sm font-semibold text-gray-900 dark:text-white hover:text-primary"
+                href="#">Connexion</a>
+            <a class="px-6 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full text-sm font-semibold hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-all shadow-lg hover:shadow-xl"
+                href="#contact">
+                Démo gratuite
+            </a>
+        </div>
+    </nav>
+    <main class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div class="relative w-full rounded-3xl overflow-hidden h-[600px] shadow-sm group">
+            <img alt="Modern architecture glass building representing data structure"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjifAL4r1sMUUZrnndpYY00FuYNETUnO1UASxJXuH5DZMa0Mozgv1iUhVrAN5ulyu_Cx2PnfrM7I0QViPVIfXwcZ1Fa5U5IS2KlR1uZGi6Hl7Md5JELIKxzI4RcKBZwI6MO8RDmLkOAGiSLgatWb5109QQO-jOBFlLbwrSCBbt0-S6C487D1g__Uod7pAWE-TTv87jIzNPcCNv_ap0MxKqsxdD4Twa0hduWhYZdQzEJhNfDQS0wEchIzZw8K_FS8Yuz4IP74zDAhU" />
+            <div class="absolute inset-0 bg-gradient-to-r from-gray-900/40 to-transparent dark:from-gray-900/60"></div>
+            <div class="relative h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-4xl">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="w-8 h-[2px] bg-primary"></span>
+                    <span class="text-white/90 text-sm font-medium tracking-wide uppercase">Intelligence
+                        Marketing</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
+                    Transformez les <br />
+                    conversations digitales <br />
+                    en intelligence <span class="text-primary">exploitable</span>
+                </h1>
+                <div class="flex items-center gap-4 text-white/90 mt-8">
+                    <div class="flex -space-x-3">
+                        <img alt="User avatar" class="w-10 h-10 rounded-full border-2 border-white/20"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfzyxB_UqdsmwzL9jWW4DXAfHUbBSMvjY50Ew_bOl9DtPdfRa14EvD4vzB8WzLJ0yvpQsqtrNrJBskAcv_YCNYshnzYa_YQhANmjujkrtK7d3gfF4875wc4t2_85RTzjZ_u0i4uKrCYQ3hr9SSCsrHw2pjvlu5pfS_d7JzFxSa3jiPm04a5mIxXl7xL9wo14ZyFcCtJ_9stY_3SLU40a9Kmxkb-9r4Z9IObjA71BEa22F0wxsgiIGTT6MayB1l6nQn1kUbI18a5LQ" />
+                        <img alt="User avatar" class="w-10 h-10 rounded-full border-2 border-white/20"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkrdtfB9B0kV6GAT0psQibOa3xZ7wqCus0DdXCBvsEP4jLPK9IS1qTogY6znxkv-j9j8BcQaiD3I9sTOHmoMVnGy7QtCIQBYnHTEtaTBSSu-HwrWVP6vYmsj3Fdx8iiE_Wv7z2_YMcjORlUPjY7NXcQAy3meX8lxyw9-3rCm3gZBTSjPd9quxJDcPJcMwLVbLi_X7XKaC1oI5UwGO3L02wGRjSVkbRojkGT8WHqgD6X15VV2NvxKjxgPfOhRfemxg-BM8_9Qpf_E4" />
+                        <img alt="User avatar" class="w-10 h-10 rounded-full border-2 border-white/20"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAWtZnqZhObS0rozyMPjZK37NJzLc6BeXYGrvbtyMHPLr2p0VsUooqetOo9stz_yFXwn9vSylDxZjByWtuFSck9zHTD7Tf3RBpbQciF2CHQ5nlcwYtH8FQT8I24f6gQXaJM8H1PBJwtoAAEvo6tloDOtCrjaeycl9aQHAdzbM-jB3DTT1F4xrGlkVeir_JS2DY1VDULYE6cRZVcJCVBCb8yZAQcS_FI44UE6NvFLi94lLZJzBcV6i6-hCJdjrwlU6gQd_ECiBkrRA" />
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg">10k+</span>
+                        <span class="text-xs opacity-80">Analyses générées</span>
+                    </div>
+                </div>
+                <div class="absolute bottom-12 left-16 flex gap-4">
+                    <button
+                        class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors">
+                        <span class="material-icons-round text-sm">arrow_back</span>
+                    </button>
+                    <button
+                        class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors">
+                        <span class="material-icons-round text-sm">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="relative -mt-16 mx-4 md:mx-12 lg:mx-24 z-10">
+            <div
+                class="bg-white dark:bg-card-dark rounded-2xl shadow-xl p-4 md:p-6 flex flex-col md:flex-row items-center gap-4 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-gray-100 dark:divide-gray-700">
+                <div class="flex-1 w-full px-4 py-2 flex items-start gap-3">
+                    <span class="material-icons-round text-gray-400 mt-1">analytics</span>
+                    <div class="flex flex-col">
+                        <label class="text-sm font-bold text-gray-900 dark:text-white">Sujet d'analyse</label>
+                        <input
+                            class="bg-transparent border-none p-0 text-sm text-gray-500 focus:ring-0 placeholder-gray-400"
+                            placeholder="Ex: Tendances Bio..." type="text" />
+                    </div>
+                </div>
+                <div class="flex-1 w-full px-4 py-2 flex items-start gap-3">
+                    <span class="material-icons-round text-gray-400 mt-1">language</span>
+                    <div class="flex flex-col">
+                        <label class="text-sm font-bold text-gray-900 dark:text-white">Langues</label>
+                        <select
+                            class="bg-transparent border-none p-0 text-sm text-gray-500 focus:ring-0 cursor-pointer">
+                            <option>Toutes les langues</option>
+                            <option>Français</option>
+                            <option>Anglais</option>
+                            <option>Arabe</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex-1 w-full px-4 py-2 flex items-start gap-3">
+                    <span class="material-icons-round text-gray-400 mt-1">calendar_today</span>
+                    <div class="flex flex-col">
+                        <label class="text-sm font-bold text-gray-900 dark:text-white">Période</label>
+                        <input
+                            class="bg-transparent border-none p-0 text-sm text-gray-500 focus:ring-0 placeholder-gray-400"
+                            placeholder="Derniers 30 jours" type="text" />
+                    </div>
+                </div>
+                <div class="pl-4">
+                    <button
+                        class="w-14 h-14 bg-black dark:bg-white text-white dark:text-black rounded-2xl flex items-center justify-center hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-colors shadow-lg">
+                        <span class="material-icons-round text-2xl">search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <section class="mt-20 px-2">
+            <div class="flex items-end justify-between mb-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Explorez nos solutions</h2>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm max-w-md">Découvrez comment Achgal Insights
+                        transforme les données complexes en stratégies claires.</p>
+                </div>
+                <div class="hidden md:flex gap-3">
+                    <button
+                        class="w-10 h-10 rounded-full bg-white dark:bg-card-dark border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-primary hover:text-primary transition-all">
+                        <span class="material-icons-round text-sm">arrow_back</span>
+                    </button>
+                    <button
+                        class="w-10 h-10 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-all shadow-md">
+                        <span class="material-icons-round text-sm">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+            <div class="flex gap-6 overflow-x-auto hide-scrollbar pb-8 snap-x">
+                <div
+                    class="snap-start min-w-[280px] md:min-w-[300px] bg-white dark:bg-card-dark rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col justify-between h-[320px] group">
+                    <div class="flex justify-between items-start">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-orange-50 dark:bg-orange-900/20 flex items-center justify-center text-primary">
+                            <span class="material-icons-round">dashboard_customize</span>
+                        </div>
+                        <span
+                            class="px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 text-[10px] font-bold rounded-md">NEW</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Plateforme Versatile</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-3">Une interface unifiée pour
+                            gérer toutes vos sources de données et vos canaux marketing.</p>
+                    </div>
+                </div>
+                <div
+                    class="snap-start min-w-[280px] md:min-w-[300px] bg-white dark:bg-card-dark rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col justify-between h-[320px] group">
+                    <div class="flex justify-between items-start">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-pink-50 dark:bg-pink-900/20 flex items-center justify-center text-secondary">
+                            <span class="material-icons-round">forum</span>
+                        </div>
+                        <span
+                            class="px-2 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 text-[10px] font-bold rounded-md">HOT</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Conversation Communautaire</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-3">Analysez le sentiment et
+                            l'engagement au cœur de vos communautés sociales.</p>
+                    </div>
+                </div>
+                <div
+                    class="snap-start min-w-[280px] md:min-w-[300px] bg-white dark:bg-card-dark rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col justify-between h-[320px] group">
+                    <div class="flex justify-between items-start">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-500">
+                            <span class="material-icons-round">translate</span>
+                        </div>
+                        <span
+                            class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-bold rounded-md">AI</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Langues et Nuances</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-3">Compréhension sémantique
+                            avancée multi-langues, captant ironie et contexte culturel.</p>
+                    </div>
+                </div>
+                <div
+                    class="snap-start min-w-[280px] md:min-w-[300px] bg-white dark:bg-card-dark rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col justify-between h-[320px] group">
+                    <div class="flex justify-between items-start">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center text-purple-500">
+                            <span class="material-icons-round">perm_media</span>
+                        </div>
+                        <span
+                            class="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-[10px] font-bold rounded-md">BETA</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Analyse Multimodale</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-3">Traitement simultané du texte,
+                            de l'audio et de la vidéo pour une vue à 360°.</p>
+                    </div>
+                </div>
+                <div
+                    class="snap-start min-w-[280px] md:min-w-[300px] bg-white dark:bg-card-dark rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col justify-between h-[320px] group">
+                    <div class="flex justify-between items-start">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-green-50 dark:bg-green-900/20 flex items-center justify-center text-green-500">
+                            <span class="material-icons-round">insights</span>
+                        </div>
+                        <span
+                            class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-[10px] font-bold rounded-md">PRO</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Données aux Insights</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-3">Transformation automatique des
+                            données brutes en rapports stratégiques.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mt-20">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                        Pourquoi choisir <br /><span class="text-primary">Achgal Insights</span> ?
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg mb-8">
+                        Nous combinons l'intelligence artificielle la plus avancée avec une compréhension humaine
+                        profonde pour offrir des insights qui font vraiment la différence.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="flex gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 flex-shrink-0">
+                                <span class="material-icons-round text-xl">speed</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white mb-1">Analyse Rapide</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Traitement de millions de données en
+                                    temps réel.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 flex-shrink-0">
+                                <span class="material-icons-round text-xl">security</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white mb-1">Sécurité Maximale</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Vos données sont chiffrées et
+                                    protégées à 100%.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-primary flex-shrink-0">
+                                <span class="material-icons-round text-xl">psychology</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white mb-1">IA Prédictive</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Anticipez les tendances avant vos
+                                    concurrents.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 flex-shrink-0">
+                                <span class="material-icons-round text-xl">support_agent</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white mb-1">Support 24/7</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Une équipe dédiée pour vous
+                                    accompagner.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full">
+                    <div
+                        class="relative bg-white dark:bg-card-dark rounded-3xl p-8 shadow-xl border border-gray-100 dark:border-gray-700">
+                        <div
+                            class="absolute -top-4 -right-4 bg-secondary text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg transform rotate-3">
+                            Leader 2024</div>
+                        <div class="flex flex-col gap-6">
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm font-semibold">
+                                    <span class="text-gray-700 dark:text-gray-300">Précision de l'analyse</span>
+                                    <span class="text-primary">98%</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary w-[98%] rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm font-semibold">
+                                    <span class="text-gray-700 dark:text-gray-300">Satisfaction client</span>
+                                    <span class="text-secondary">4.9/5</span>
+                                </div>
+                                <div class="h-2 w-full bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-secondary w-[95%] rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-white dark:bg-gray-700 flex items-center justify-center shadow-sm">
+                                    <span class="material-icons-round text-primary">trending_up</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-gray-900 dark:text-white">ROI Moyen</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">+240% dès la première année</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mt-20">
+            <div
+                class="bg-gray-50 dark:bg-gray-800/50 rounded-3xl p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center gap-12">
+                <div class="flex-1 space-y-6">
+                    <div
+                        class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+                        Achgal Insights
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+                        Une vision claire de votre marché
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                        Notre technologie propriétaire parcourt le web pour dénicher les conversations qui comptent.
+                        Grâce à nos algorithmes d'analyse multimodale, nous transformons le bruit digital en signaux
+                        stratégiques pour votre marque.
+                    </p>
+                    <ul class="space-y-3 mt-4">
+                        <li class="flex items-center gap-3 text-gray-700 dark:text-gray-200">
+                            <span
+                                class="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 flex items-center justify-center text-xs">✓</span>
+                            Suivi en temps réel
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 dark:text-gray-200">
+                            <span
+                                class="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 flex items-center justify-center text-xs">✓</span>
+                            Tableaux de bord personnalisables
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 dark:text-gray-200">
+                            <span
+                                class="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 flex items-center justify-center text-xs">✓</span>
+                            Exportation API simplifiée
+                        </li>
+                    </ul>
+                    <button
+                        class="mt-4 text-primary font-bold hover:text-secondary transition-colors flex items-center gap-2 group">
+                        En savoir plus
+                        <span
+                            class="material-icons-round text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </button>
+                </div>
+                <div class="flex-1 w-full">
+                    <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                        <img alt="Data dashboard visualization" class="absolute inset-0 w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBolGtQ_eZl5HqeRr9x-vrAMWbByZIAUeoYVNlsnc7pNIkiIS3g2ZkKEi_53fNoKhS4PZ3jx3reJlR1nQmoZA4-M2Yt4GuV3Uo2tL1U4HoN-7Gvtn79FtP66iuLcXFg7T2WjPQjq36-RXBxBIcDHSHFpFNYD0vvDFZjhq85BjpRymv4Y_mwE76MRorNTqnlLiv3R4qN2hIZbh7YIIfc3f0nl4DC6rEjlJzSUeirUA6XKbC6p0LYaErYlkhOer8p7RCqlobJ_QxOEXM" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div
+                            class="absolute bottom-6 left-6 right-6 bg-white/90 dark:bg-gray-900/90 backdrop-blur p-4 rounded-xl shadow-lg border border-white/20">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-bold text-gray-500">Croissance Mensuelle</span>
+                                <span class="text-green-500 font-bold text-sm">+24%</span>
+                            </div>
+                            <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-primary to-secondary w-[74%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Cas d'Études</h2>
+                <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">Découvrez comment nos clients utilisent
+                    Achgal Insights pour booster leur croissance.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="bg-white dark:bg-card-dark rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 group hover:-translate-y-1 transition-transform duration-300">
+                    <div class="h-48 bg-gray-200 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img alt="Meeting room"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuChJelZ4ALmRUjAMB7e0DkWNP8RBfZgDNs_Zch7LRnhdhBc1fB1K7pVaqVoGcleBWsOEviUqWWFmpOvJl3oM0QI794P3PQJK2ENFvgudm6u7lRjisCDVq5YDFZrqYRtQHa1k4tjwLzolYfeXngs8Xlwm4B5D_iGPBcPvRSQb1-wpCyj42vhFk2sayePdHTMjM9erPOpBXr7Pg5s8PtbFaxLxR2V6CcYKdkoAB-6CGiq7slPltkzzh7hrUbM_9fkv-obo7YDs0xG56s" />
+                        <span
+                            class="absolute bottom-4 left-4 z-20 text-white text-xs font-bold px-2 py-1 bg-primary rounded-md">Retail</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Optimisation des stocks</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-3">Comment une chaîne de
+                            magasins a réduit ses invendus de 30% grâce à l'analyse prédictive des tendances locales.
+                        </p>
+                        <a class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"
+                            href="#">Lire l'étude <span class="material-icons-round text-xs">arrow_forward</span></a>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-card-dark rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 group hover:-translate-y-1 transition-transform duration-300">
+                    <div class="h-48 bg-gray-200 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img alt="Tech office"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmxtB0JVTkXdreInRtx7cfdjNwSVZgWOdnWGNEmx-4cmn6AbPxEd_bpVuDyTXoeFzEXcjo7OM-8Zf9-89m63mhbaunRFtXBu7F0vdTO6reolEG3bt6oXllgH4dNS_If0-ccfW7HVOcwCN17u-4DjDb2u_rpB4EFcsVm2-dbzo-Ds-pYzTAI0qO3Qu22KkE73_Z6WrMXZG-HtxgTmqfHBVPsYEdUz78a_uMqFVVCMqVuxFxOmhTLaSQOktqdwiutYRrUdRUQAzB8O4" />
+                        <span
+                            class="absolute bottom-4 left-4 z-20 text-white text-xs font-bold px-2 py-1 bg-secondary rounded-md">Tech</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Lancement produit réussi</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-3">Analyse du sentiment
+                            social pour ajuster la campagne marketing d'une nouvelle application SaaS en temps réel.</p>
+                        <a class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"
+                            href="#">Lire l'étude <span class="material-icons-round text-xs">arrow_forward</span></a>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-card-dark rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 group hover:-translate-y-1 transition-transform duration-300">
+                    <div class="h-48 bg-gray-200 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img alt="Financial graphs"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9AY3te_zVdY6lfFY1W7HNZGWugxeKr3V_LeWd-c_gSo7lwliHFoaEg-ay44D4hE0B9RFrDE1bouP9vARAlrFwbH2ilwCSZvd8dm7rmtZw1ERo0aKRyyLr1V6kkpTy21lCzEPZqedgZ7H34CdGQfxRvjWK_W0zPwARDOyQKBBX-pS541UXqSxBbB51FFIPtlbngHG3k1Yr545EyHhDDc7EoCLEX3Zd4DqJCKvI2vtcBnuONZu4X5sf76ahi_lz1yH9_Hh-zJJPTqs" />
+                        <span
+                            class="absolute bottom-4 left-4 z-20 text-white text-xs font-bold px-2 py-1 bg-blue-500 rounded-md">Finance</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Détection de crise</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-3">Identification précoce
+                            d'une rumeur virale permettant à une banque de réagir en moins de 2 heures.</p>
+                        <a class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"
+                            href="#">Lire l'étude <span class="material-icons-round text-xs">arrow_forward</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mt-20 py-16 bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-800/30 rounded-3xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Ce que disent nos clients
+                </h2>
+                <div class="flex justify-center gap-1 mb-2">
+                    <span class="material-icons-round text-yellow-400">star</span>
+                    <span class="material-icons-round text-yellow-400">star</span>
+                    <span class="material-icons-round text-yellow-400">star</span>
+                    <span class="material-icons-round text-yellow-400">star</span>
+                    <span class="material-icons-round text-yellow-400">star</span>
+                </div>
+                <p class="text-sm text-gray-500">Note moyenne de 4.9/5 par plus de 500 entreprises.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 md:px-12">
+                <div
+                    class="bg-white dark:bg-card-dark p-8 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 relative">
+                    <span
+                        class="material-icons-round text-6xl text-primary/10 absolute top-4 right-4">format_quote</span>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 relative z-10">"Achgal Insights a
+                        complètement changé notre approche marketing. Nous ne devinons plus ce que veulent nos clients,
+                        nous le savons."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
+                            <img alt="Client" class="w-full h-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeII-p7v5EYt0lplWg4x-qG8faCoX2DeQQeCZX86ZmQCVT1cGEhImMSNhfdNxMAuqZ2jD8xBLejhz3CTdo24YISCHEUotKxZIwDy02g7jqj_gWfKR_KlkLDlUErLCi8HBvkrRNIABk05orEz7qpt4dhbX6Sta9SKf763Vob-9qV5E5gfx4B9TyQ9l3RsEqnbSZV45BuWx5BgaYcj4O2p6rXtSTiMsaiEbxrqImNQpIphcPXpYXMeIUVBez9VMwaa_0J85y34AOSnI" />
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white text-sm">Sophie Martin</h4>
+                            <p class="text-xs text-gray-500">CMO, TechGlobal</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-card-dark p-8 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 relative mt-0 md:-mt-4">
+                    <span
+                        class="material-icons-round text-6xl text-secondary/10 absolute top-4 right-4">format_quote</span>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 relative z-10">"L'interface est intuitive et
+                        les rapports sont d'une clarté impressionnante. Le support client est également très réactif."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
+                            <img alt="Client" class="w-full h-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyg7NrWsYaK5VY8hJnMuNjBtApjpLKJUyCDz-qAYrm6tmKMeh33J-5hocHuO91AhHvVqBVIVCMuBWpXd91QU-dbUJRHpmorWjeRmyUctCCI7y8JnTh87wO4IavkT873KlvFL_UdToLc2icEiQ8YCFLKlZ3PbBY93wuqMeiq2fssTe-zaaVlUOSw-xOPsv4ll3DXAG_sd2_LrdvfWaHggdzAXNAp89Jk5mMJQ9MsAWiBc-9aG7hjJZBzamlPt1OmNi27TOleHUo4Mk" />
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white text-sm">Thomas Dubois</h4>
+                            <p class="text-xs text-gray-500">Directeur Data, RetailPlus</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-card-dark p-8 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 relative">
+                    <span
+                        class="material-icons-round text-6xl text-primary/10 absolute top-4 right-4">format_quote</span>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 relative z-10">"Un outil indispensable pour
+                        toute équipe qui veut rester compétitive. La détection des tendances est bluffante."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
+                            <img alt="Client" class="w-full h-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDY6riTRspmkKrW8w3vZwkHtk1dATsZUL-EV0g_4q50qki5WMcxvC2ye1LMpfONdCQhxgf4ETIeYoZfzOgf_d2eTW9dNarOpYfneHTiQBhRcpZfUwqcIdy0MLBjIlC8RMHFaQr_RTCoOLMsIQv12NhyNPbflR_latiUkxiJIOWYPp6ab-uvbE8kDAkCYSHDUUS4i1ytL8xUEgD1Evrd49pf0AY6UBUgCws67gn0m2iJIYURZiUipe_A_HZkletviUGCaJQ50dZgBQ" />
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white text-sm">Amira Benali</h4>
+                            <p class="text-xs text-gray-500">CEO, StartUp Flow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mt-20">
+            <div class="flex justify-between items-end mb-8 px-2">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Actualités et Ressources</h2>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Restez informé des dernières tendances du
+                        marketing digital.</p>
+                </div>
+                <a class="hidden md:flex items-center text-primary font-bold hover:text-secondary transition-colors text-sm gap-2"
+                    href="#">
+                    Voir tout le blog <span class="material-icons-round text-sm">arrow_forward</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div
+                    class="bg-white dark:bg-card-dark rounded-2xl p-6 flex flex-col md:flex-row gap-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow">
+                    <div class="w-full md:w-1/3 h-48 md:h-auto rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+                        <img alt="Blog post thumbnail" class="w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzFFIykYhYWy0eV_K51OAs2JixHZLVxjDjMvvW1aDYPt3rQnDNjtYeM5v948wfLSzK1WuEsM1csa07P-z73txh_EjEEPbCLXfxSZSYxx9ImU0NWeEgMk8qMn7rGpWAK-xaA75hoosmk5JaBUMHCraDb-xDjjFtUFduZKpmePf9AFp7g6kppBs3gKozqfh20c-ZODotxasqmIL_QcS0hYo6y2vfR7CwuWt-lKhrB8WverVwaVtnUFL5mMH9CfKk1pviIT0xNXwh808" />
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <span class="text-xs font-bold text-primary uppercase tracking-wide mb-2">Guide Pratique</span>
+                        <h3
+                            class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight hover:text-primary transition-colors cursor-pointer">
+                            5 étapes pour auditer votre présence digitale en 2024</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 line-clamp-2">Apprenez à identifier les
+                            forces et les faiblesses de votre stratégie actuelle avec notre checklist complète.</p>
+                        <div class="text-xs text-gray-400 flex items-center gap-2">
+                            <span class="material-icons-round text-sm">schedule</span> 5 min de lecture
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-card-dark rounded-2xl p-6 flex flex-col md:flex-row gap-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow">
+                    <div class="w-full md:w-1/3 h-48 md:h-auto rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+                        <img alt="Blog post thumbnail" class="w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKRDCJ7HVE01WYPN88bq0YDKvBOqCpNp6G5sXVWjZMBxvqBwubb8A8Prgw0n3FL-tig1dnNDHjNsDdhZPSTCX0idU1PWHg4sXhYSCY7N1w7om5xppeOM21C6PglXu8N9VjpWfd4B_zgqyvfh489wA-a_7Ksx7OVDfffBYrIlZurZLjWdw2P_PihGMWR5g0oROymtTyRakZXXolQfYE-y8-q2HtYR4JeoeMsa8wXSImidMMdd7OH_l1cOXUamIkvLiV8tSJ11EAP0Y" />
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <span class="text-xs font-bold text-secondary uppercase tracking-wide mb-2">Tendance</span>
+                        <h3
+                            class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight hover:text-secondary transition-colors cursor-pointer">
+                            L'impact de l'IA générative sur l'analyse de sentiment</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 line-clamp-2">Comment les nouveaux
+                            modèles de langage transforment la précision des outils d'écoute sociale.</p>
+                        <div class="text-xs text-gray-400 flex items-center gap-2">
+                            <span class="material-icons-round text-sm">schedule</span> 8 min de lecture
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mt-20 mb-10" id="contact">
+            <div
+                class="relative bg-black dark:bg-white rounded-3xl overflow-hidden p-8 md:p-16 text-center md:text-left">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-20 blur-[80px] rounded-full"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary opacity-20 blur-[80px] rounded-full"></div>
+                <div class="relative z-10 flex flex-col md:flex-row gap-12 items-center">
+                    <div class="flex-1">
+                        <h2 class="text-3xl md:text-5xl font-bold text-white dark:text-black mb-6">
+                            Prêt à optimiser votre <span class="text-primary">marketing</span> ?
+                        </h2>
+                        <p class="text-gray-400 dark:text-gray-600 mb-8 max-w-md">
+                            Contactez notre équipe pour une démonstration personnalisée et découvrez la puissance
+                            d'Achgal Insights.
+                        </p>
+                    </div>
+                    <div class="flex-1 w-full max-w-md bg-white dark:bg-gray-100 rounded-2xl p-6 md:p-8 shadow-2xl">
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Email
+                                    Professionnel</label>
+                                <input
+                                    class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:ring-primary focus:border-primary transition-shadow"
+                                    placeholder="nom@entreprise.com" type="email" />
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Message</label>
+                                <textarea
+                                    class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:ring-primary focus:border-primary transition-shadow"
+                                    placeholder="Comment pouvons-nous vous aider ?" rows="3"></textarea>
+                            </div>
+                            <button
+                                class="w-full bg-primary hover:bg-orange-600 text-white font-bold py-3.5 rounded-lg transition-colors shadow-lg hover:shadow-orange-500/30"
+                                type="button">
+                                Demander une démo
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 pt-16 pb-8">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div
+                            class="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold">
+                            A</div>
+                        <span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Achgal
+                            Insights</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
+                        La plateforme d'intelligence marketing qui transforme le bruit digital en décisions stratégiques
+                        claires pour votre entreprise.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-500 hover:text-primary hover:shadow-md transition-all"
+                            href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-500 hover:text-primary hover:shadow-md transition-all"
+                            href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-500 hover:text-primary hover:shadow-md transition-all"
+                            href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white mb-6">Produit</h4>
+                    <ul class="space-y-4 text-sm text-gray-500 dark:text-gray-400">
+                        <li><a class="hover:text-primary transition-colors" href="#">Fonctionnalités</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Intégrations</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Tarifs</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Mises à jour</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white mb-6">Ressources</h4>
+                    <ul class="space-y-4 text-sm text-gray-500 dark:text-gray-400">
+                        <li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Guides</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Webinaires</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Centre d'aide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white mb-6">Entreprise</h4>
+                    <ul class="space-y-4 text-sm text-gray-500 dark:text-gray-400">
+                        <li><a class="hover:text-primary transition-colors" href="#">À propos</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Carrières</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Presse</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 dark:text-gray-400 gap-4">
+                <p>© 2023 Achgal Insights. Tous droits réservés.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-primary transition-colors" href="#">Mentions légales</a>
+                    <a class="hover:text-primary transition-colors" href="#">Confidentialité</a>
+                    <a class="hover:text-primary transition-colors" href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
