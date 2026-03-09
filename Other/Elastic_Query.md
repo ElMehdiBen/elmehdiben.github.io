@@ -5,9 +5,9 @@
 
 ## Introduction
 
-La **barre de recherche Elasticsearch** vous permet de trouver exactement ce que vous cherchez en utilisant des mots-clés simples ou des combinaisons plus précises.
+La **barre de recherche Elasticsearch** vous permet de trouver exactement ce que vous cherchez parmi des milliers de posts, commentaires et publications de réseaux sociaux, en utilisant des mots-clés simples ou des combinaisons plus précises.
 
-Ce guide vous montre comment formuler vos recherches pour obtenir les meilleurs résultats.
+Ce guide vous montre comment formuler vos recherches pour surveiller votre marque, analyser des tendances ou modérer du contenu.
 
 ---
 
@@ -16,10 +16,10 @@ Ce guide vous montre comment formuler vos recherches pour obtenir les meilleurs 
 La façon la plus basique : tapez simplement un ou plusieurs mots.
 
 ```
-facture client
+nouveau produit
 ```
 
-> 🔎 Retourne tous les documents qui contiennent **"facture"** ou **"client"** (ou les deux).
+> 🔎 Retourne tous les posts qui contiennent **"nouveau"** ou **"produit"** (ou les deux).
 
 ---
 
@@ -28,16 +28,16 @@ facture client
 Pour chercher une **expression exacte**, entourez-la de guillemets.
 
 ```
-"facture impayée"
+"service client déplorable"
 ```
 
-> ✅ Retourne uniquement les documents contenant exactement la phrase **"facture impayée"** dans cet ordre.
+> ✅ Retourne uniquement les publications contenant exactement la phrase **"service client déplorable"** dans cet ordre.
 
 ```
-"contrat de service 2024"
+"lancement produit 2024"
 ```
 
-> ✅ Très utile pour retrouver un titre de document, un nom de projet ou une référence précise.
+> ✅ Très utile pour retrouver un hashtag, un slogan de campagne ou une expression précise utilisée par les internautes.
 
 ---
 
@@ -46,16 +46,16 @@ Pour chercher une **expression exacte**, entourez-la de guillemets.
 Pour que **tous les mots** soient présents dans le résultat.
 
 ```
-facture AND Paris
+livraison AND retard
 ```
 
-> ✅ Retourne les documents qui contiennent **"facture"** ET **"Paris"**.
+> ✅ Retourne les posts qui mentionnent **"livraison"** ET **"retard"**.
 
 ```
-contrat AND "Jean Dupont" AND 2024
+"@MaMarque" AND arnaque AND 2024
 ```
 
-> ✅ Idéal pour croiser plusieurs critères et affiner votre recherche.
+> ✅ Idéal pour détecter les signaux négatifs liés à votre marque sur une période donnée.
 
 ---
 
@@ -64,16 +64,16 @@ contrat AND "Jean Dupont" AND 2024
 Pour obtenir des résultats qui contiennent **l'un ou l'autre** des termes.
 
 ```
-facture OR devis
+Instagram OR TikTok
 ```
 
-> ✅ Retourne les documents qui contiennent **"facture"** ou **"devis"** (ou les deux).
+> ✅ Retourne les publications qui mentionnent **"Instagram"** ou **"TikTok"** (ou les deux).
 
 ```
-Lyon OR Marseille OR Bordeaux
+excellent OR génial OR "top qualité"
 ```
 
-> ✅ Pratique pour rechercher sur plusieurs villes, catégories ou variantes d'un même concept.
+> ✅ Pratique pour regrouper tous les avis positifs exprimés de différentes façons.
 
 ---
 
@@ -82,16 +82,16 @@ Lyon OR Marseille OR Bordeaux
 Pour **exclure** un terme de vos résultats.
 
 ```
-facture NOT annulée
+concours NOT spam
 ```
 
-> ✅ Retourne les documents contenant **"facture"** mais **pas** ceux avec le mot **"annulée"**.
+> ✅ Retourne les posts mentionnant **"concours"** mais **pas** ceux identifiés comme **"spam"**.
 
 ```
-contrat NOT brouillon NOT archivé
+avis NOT positif NOT satisfait
 ```
 
-> ✅ Très utile pour filtrer les documents de travail et ne voir que les finaux.
+> ✅ Très utile pour isoler les retours négatifs et les signalements critiques.
 
 ---
 
@@ -100,16 +100,16 @@ contrat NOT brouillon NOT archivé
 Les parenthèses permettent de **grouper** des conditions, comme en mathématiques.
 
 ```
-(facture OR devis) AND Paris
+(problème OR bug OR panne) AND application
 ```
 
-> ✅ Retourne les documents qui contiennent **("facture" ou "devis")** ET **"Paris"**.
+> ✅ Retourne les posts qui parlent de **("problème" ou "bug" ou "panne")** ET de **"application"**.
 
 ```
-(contrat OR accord) AND "Jean Dupont" NOT archivé
+(influenceur OR créateur) AND "MaMarque" NOT publicité
 ```
 
-> ✅ Trouve les contrats ou accords de Jean Dupont, en excluant les archives.
+> ✅ Trouve les mentions organiques de votre marque par des influenceurs, en excluant les posts sponsorisés.
 
 ---
 
@@ -120,32 +120,32 @@ Les wildcards vous permettent de chercher des **mots partiels ou avec des variat
 ### L'étoile `*` — remplace zéro ou plusieurs caractères
 
 ```
-factur*
+promo*
 ```
 
-> ✅ Trouve : **facture**, **factures**, **facturation**, **facturier**...
+> ✅ Trouve : **promo**, **promotion**, **promotionnel**, **promos**...
 
 ```
-rapport*2024
+insatisf*
 ```
 
-> ✅ Trouve : **rapport_annuel_2024**, **rapport-Q1-2024**, **rapportFinal2024**...
+> ✅ Trouve : **insatisfait**, **insatisfaite**, **insatisfaction**... Utile pour capturer toutes les variantes d'un sentiment.
 
 ### Le point d'interrogation `?` — remplace exactement un caractère
 
 ```
-anal?se
+livrais?n
 ```
 
-> ✅ Trouve : **analyse**, **analyser** *(un seul caractère manquant)*
+> ✅ Trouve : **livraison**, **livraisOn** *(tolérance sur une faute de frappe)*
 
 ```
-200?
+Covid-1?
 ```
 
-> ✅ Trouve : **2001**, **2002**, **2003**... jusqu'à **2009**
+> ✅ Trouve : **Covid-19**, **Covid-10**, **Covid-18**... Pratique pour les sujets avec numérotation variable.
 
-> ⚠️ **Conseil** : Évitez de commencer un wildcard par `*` (ex: `*ture`), cela ralentit la recherche.
+> ⚠️ **Conseil** : Évitez de commencer un wildcard par `*` (ex: `*tion`), cela ralentit la recherche.
 
 ---
 
@@ -154,16 +154,16 @@ anal?se
 Si vous connaissez le champ dans lequel chercher, vous pouvez **cibler votre recherche**.
 
 ```
-titre:"rapport annuel"
+auteur:"@jean_dupont"
 ```
 
-> ✅ Cherche la phrase exacte **"rapport annuel"** uniquement dans le champ **titre**.
+> ✅ Cherche uniquement les publications postées par le compte **@jean_dupont**.
 
 ```
-auteur:Dupont AND statut:validé
+plateforme:Twitter AND contenu:"service client"
 ```
 
-> ✅ Trouve les documents créés par **Dupont** avec le statut **validé**.
+> ✅ Trouve les tweets mentionnant exactement **"service client"**, en filtrant sur Twitter uniquement.
 
 ---
 
@@ -171,38 +171,43 @@ auteur:Dupont AND statut:validé
 
 | Ce que je veux faire | Syntaxe à utiliser | Exemple |
 |---|---|---|
-| Chercher plusieurs mots (l'un ou l'autre) | mots séparés par un espace | `facture client` |
-| Chercher une phrase exacte | `"..."` | `"bon de commande"` |
-| Les deux mots obligatoires | `AND` | `facture AND Paris` |
-| L'un ou l'autre | `OR` | `facture OR devis` |
-| Exclure un mot | `NOT` | `facture NOT annulée` |
-| Grouper des conditions | `( )` | `(facture OR devis) AND Paris` |
-| Mot partiel / plusieurs variantes | `*` | `factur*` |
-| Un caractère inconnu | `?` | `anal?se` |
-| Chercher dans un champ spécifique | `champ:valeur` | `auteur:Dupont` |
+| Chercher plusieurs mots (l'un ou l'autre) | mots séparés par un espace | `nouveau produit` |
+| Chercher une phrase exacte | `"..."` | `"service client déplorable"` |
+| Les deux mots obligatoires | `AND` | `livraison AND retard` |
+| L'un ou l'autre | `OR` | `Instagram OR TikTok` |
+| Exclure un mot | `NOT` | `concours NOT spam` |
+| Grouper des conditions | `( )` | `(bug OR panne) AND application` |
+| Mot partiel / plusieurs variantes | `*` | `promo*` |
+| Un caractère inconnu | `?` | `livrais?n` |
+| Chercher dans un champ spécifique | `champ:valeur` | `plateforme:Twitter` |
 
 ---
 
 ## 10. Exemples concrets du quotidien
 
-**Trouver toutes les factures impayées de 2024 à Paris :**
+**Surveiller les mentions négatives de votre marque en 2024 :**
 ```
-"facture impayée" AND Paris AND 2024
-```
-
-**Trouver les contrats ou accords de Marie Martin, hors brouillons :**
-```
-(contrat OR accord) AND "Marie Martin" NOT brouillon
+"MaMarque" AND (plainte OR arnaque OR déçu OR remboursement) AND 2024
 ```
 
-**Trouver tous les rapports trimestriels (Q1, Q2, Q3, Q4) :**
+**Trouver tous les posts parlant de votre nouveau produit, hors posts sponsorisés :**
 ```
-"rapport Q?" OR rapport*trimestriel
+"NouveauProduit" NOT sponsorisé NOT publicité NOT partenariat
 ```
 
-**Trouver les documents liés aux clients de Lyon ou Bordeaux, validés :**
+**Détecter les variations d'un hashtag de campagne :**
 ```
-(Lyon OR Bordeaux) AND statut:validé
+#campagne* OR "ma campagne ?"
+```
+
+**Trouver les avis positifs sur Instagram ou TikTok :**
+```
+(excellent OR génial OR "j'adore" OR incroyable) AND (plateforme:Instagram OR plateforme:TikTok)
+```
+
+**Chercher les signalements de bugs ou pannes par les utilisateurs :**
+```
+(bug OR panne OR "ça ne fonctionne pas" OR planté) AND application NOT résolu
 ```
 
 ---
