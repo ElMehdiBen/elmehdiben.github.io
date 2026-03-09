@@ -13,13 +13,19 @@ Ce guide vous montre comment formuler vos recherches pour surveiller votre marqu
 
 ## 1. Recherche simple
 
-La façon la plus basique : tapez simplement un ou plusieurs mots.
+La façon la plus basique : tapez simplement un ou plusieurs mots dans le champ `text` ou `ml_content_summary`.
 
 ```
-nouveau produit
+boycott stade
 ```
 
-> 🔎 Retourne tous les posts qui contiennent **"nouveau"** ou **"produit"** (ou les deux).
+> 🔎 Retourne tous les posts dont le contenu mentionne **"boycott"** ou **"stade"** (ou les deux).
+
+```
+Moulay Abdellah
+```
+
+> 🔎 Retourne toutes les publications citant **"Moulay"** ou **"Abdellah"** — utile pour surveiller les mentions d'un lieu spécifique.
 
 ---
 
@@ -28,16 +34,16 @@ nouveau produit
 Pour chercher une **expression exacte**, entourez-la de guillemets.
 
 ```
-"service client déplorable"
+"Prince Moulay Abdellah Stadium"
 ```
 
-> ✅ Retourne uniquement les publications contenant exactement la phrase **"service client déplorable"** dans cet ordre.
+> ✅ Retourne uniquement les posts mentionnant exactement ce nom de stade (`ml_place_mentioned`), sans remonter des résultats partiels non pertinents.
 
 ```
-"lancement produit 2024"
+"empty stands"
 ```
 
-> ✅ Très utile pour retrouver un hashtag, un slogan de campagne ou une expression précise utilisée par les internautes.
+> ✅ Retrouve précisément les publications dont le résumé ML (`ml_content_summary`) contient cette expression — par exemple les posts analysés comme montrant des tribunes vides.
 
 ---
 
@@ -46,16 +52,16 @@ Pour chercher une **expression exacte**, entourez-la de guillemets.
 Pour que **tous les mots** soient présents dans le résultat.
 
 ```
-livraison AND retard
+boycott AND Maroc
 ```
 
-> ✅ Retourne les posts qui mentionnent **"livraison"** ET **"retard"**.
+> ✅ Retourne les posts qui mentionnent à la fois **"boycott"** ET **"Maroc"** (`ml_place_mentioned:Morocco`).
 
 ```
-"@MaMarque" AND arnaque AND 2024
+ml_sentiment:neutral AND ml_category:Football AND platform:tiktok
 ```
 
-> ✅ Idéal pour détecter les signaux négatifs liés à votre marque sur une période donnée.
+> ✅ Retrouve toutes les publications TikTok classées Football avec un sentiment neutre — exactement comme le post de l'exemple (`ml_sentiment`, `ml_category`, `platform`).
 
 ---
 
@@ -64,16 +70,16 @@ livraison AND retard
 Pour obtenir des résultats qui contiennent **l'un ou l'autre** des termes.
 
 ```
-Instagram OR TikTok
+platform:tiktok OR platform:instagram
 ```
 
-> ✅ Retourne les publications qui mentionnent **"Instagram"** ou **"TikTok"** (ou les deux).
+> ✅ Retourne toutes les publications provenant de TikTok ou d'Instagram (champ `platform`).
 
 ```
-excellent OR génial OR "top qualité"
+ml_dominant_emotion:curiosity OR ml_dominant_emotion:anger OR ml_dominant_emotion:frustration
 ```
 
-> ✅ Pratique pour regrouper tous les avis positifs exprimés de différentes façons.
+> ✅ Utile pour surveiller plusieurs émotions à la fois parmi les posts analysés par le moteur ML (`ml_dominant_emotion`).
 
 ---
 
@@ -82,16 +88,16 @@ excellent OR génial OR "top qualité"
 Pour **exclure** un terme de vos résultats.
 
 ```
-concours NOT spam
+ml_sector:Sports NOT ml_category:Football
 ```
 
-> ✅ Retourne les posts mentionnant **"concours"** mais **pas** ceux identifiés comme **"spam"**.
+> ✅ Retourne les posts du secteur Sports (`ml_sector`) mais en excluant ceux catégorisés Football — pour voir d'autres disciplines.
 
 ```
-avis NOT positif NOT satisfait
+ml_tags:boycott NOT ml_sentiment:negative
 ```
 
-> ✅ Très utile pour isoler les retours négatifs et les signalements critiques.
+> ✅ Trouve les posts taggés "boycott" (`ml_tags`) mais dont le sentiment n'est pas négatif — pour identifier les mentions neutres ou informatives.
 
 ---
 
@@ -100,16 +106,16 @@ avis NOT positif NOT satisfait
 Les parenthèses permettent de **grouper** des conditions, comme en mathématiques.
 
 ```
-(problème OR bug OR panne) AND application
+(ml_tags:stadium OR ml_tags:attendance) AND ml_place_mentioned:"Morocco"
 ```
 
-> ✅ Retourne les posts qui parlent de **("problème" ou "bug" ou "panne")** ET de **"application"**.
+> ✅ Retourne les posts taggés "stadium" ou "attendance" ET mentionnant le Maroc comme lieu — comme dans l'exemple avec `ml_sector_specific_tags`.
 
 ```
-(influenceur OR créateur) AND "MaMarque" NOT publicité
+(ml_post_type:question OR ml_post_type:personal_opinion) AND ml_category:Football NOT ml_status:complete
 ```
 
-> ✅ Trouve les mentions organiques de votre marque par des influenceurs, en excluant les posts sponsorisés.
+> ✅ Trouve les posts football de type question ou opinion personnelle (`ml_post_type`) qui ne sont pas encore traités — pour prioriser la modération.
 
 ---
 
@@ -120,32 +126,32 @@ Les wildcards vous permettent de chercher des **mots partiels ou avec des variat
 ### L'étoile `*` — remplace zéro ou plusieurs caractères
 
 ```
-promo*
+ml_tags:fan*
 ```
 
-> ✅ Trouve : **promo**, **promotion**, **promotionnel**, **promos**...
+> ✅ Trouve tous les tags commençant par "fan" : **fan_engagement**, **fans**, **fan_culture**... Pratique quand les tags ML varient légèrement selon les projets.
 
 ```
-insatisf*
+ml_sector_specific_tag_values:*low*
 ```
 
-> ✅ Trouve : **insatisfait**, **insatisfaite**, **insatisfaction**... Utile pour capturer toutes les variantes d'un sentiment.
+> ✅ Capture toutes les valeurs contenant "low" : **low fan_engagement**, **low attendance**, **low crowd**... comme dans le champ `ml_sector_specific_tag_values` de l'exemple.
 
 ### Le point d'interrogation `?` — remplace exactement un caractère
 
 ```
-livrais?n
+author_username:achetr?achetra
 ```
 
-> ✅ Trouve : **livraison**, **livraisOn** *(tolérance sur une faute de frappe)*
+> ✅ Tolère une variation d'un caractère dans le nom d'utilisateur (`author_username`) — utile si le séparateur varie (point, tiret, underscore).
 
 ```
-Covid-1?
+ml_emotional_intensity:moderately_emotion??
 ```
 
-> ✅ Trouve : **Covid-19**, **Covid-10**, **Covid-18**... Pratique pour les sujets avec numérotation variable.
+> ✅ Trouve **moderately_emotional** et ses variantes proches — utile si les valeurs du champ ne sont pas toujours uniformes.
 
-> ⚠️ **Conseil** : Évitez de commencer un wildcard par `*` (ex: `*tion`), cela ralentit la recherche.
+> ⚠️ **Conseil** : Évitez de commencer un wildcard par `*` (ex: `*engagement`), cela ralentit la recherche.
 
 ---
 
@@ -154,16 +160,28 @@ Covid-1?
 Si vous connaissez le champ dans lequel chercher, vous pouvez **cibler votre recherche**.
 
 ```
-auteur:"@jean_dupont"
+author_username:achetr.achetra
 ```
 
-> ✅ Cherche uniquement les publications postées par le compte **@jean_dupont**.
+> ✅ Retourne uniquement les publications de cet auteur précis (champ `author_username`).
 
 ```
-plateforme:Twitter AND contenu:"service client"
+projects.name:"Perception Foot CAN CDM"
 ```
 
-> ✅ Trouve les tweets mentionnant exactement **"service client"**, en filtrant sur Twitter uniquement.
+> ✅ Filtre toutes les publications rattachées à ce projet spécifique (champ `projects[id].name`).
+
+```
+ml_place_mentioned:"Prince Moulay Abdellah Stadium" AND ml_sector_specific_tag_values.stadium_attendance:"empty stands"
+```
+
+> ✅ Croise le lieu mentionné (`ml_place_mentioned`) et la valeur d'analyse ML de remplissage du stade (`ml_sector_specific_tag_values`) pour un ciblage très précis.
+
+```
+qualification.status:QUALIFIED AND qualification.country:Morocco
+```
+
+> ✅ Trouve tous les posts qualifiés manuellement au Maroc (champs dans `projects[id].qualification`).
 
 ---
 
@@ -171,43 +189,48 @@ plateforme:Twitter AND contenu:"service client"
 
 | Ce que je veux faire | Syntaxe à utiliser | Exemple |
 |---|---|---|
-| Chercher plusieurs mots (l'un ou l'autre) | mots séparés par un espace | `nouveau produit` |
-| Chercher une phrase exacte | `"..."` | `"service client déplorable"` |
-| Les deux mots obligatoires | `AND` | `livraison AND retard` |
-| L'un ou l'autre | `OR` | `Instagram OR TikTok` |
-| Exclure un mot | `NOT` | `concours NOT spam` |
-| Grouper des conditions | `( )` | `(bug OR panne) AND application` |
-| Mot partiel / plusieurs variantes | `*` | `promo*` |
-| Un caractère inconnu | `?` | `livrais?n` |
-| Chercher dans un champ spécifique | `champ:valeur` | `plateforme:Twitter` |
+| Chercher plusieurs mots (l'un ou l'autre) | mots séparés par un espace | `boycott stade` |
+| Chercher une phrase exacte | `"..."` | `"empty stands"` |
+| Les deux mots obligatoires | `AND` | `boycott AND Maroc` |
+| L'un ou l'autre | `OR` | `platform:tiktok OR platform:instagram` |
+| Exclure un mot | `NOT` | `ml_sector:Sports NOT ml_category:Football` |
+| Grouper des conditions | `( )` | `(ml_tags:stadium OR ml_tags:attendance) AND ml_place_mentioned:"Morocco"` |
+| Mot partiel / plusieurs variantes | `*` | `ml_tags:fan*` |
+| Un caractère inconnu | `?` | `ml_emotional_intensity:moderately_emotion??` |
+| Chercher dans un champ spécifique | `champ:valeur` | `author_username:achetr.achetra` |
 
 ---
 
 ## 10. Exemples concrets du quotidien
 
-**Surveiller les mentions négatives de votre marque en 2024 :**
+**Trouver tous les posts TikTok sur le boycott des stades au Maroc :**
 ```
-"MaMarque" AND (plainte OR arnaque OR déçu OR remboursement) AND 2024
-```
-
-**Trouver tous les posts parlant de votre nouveau produit, hors posts sponsorisés :**
-```
-"NouveauProduit" NOT sponsorisé NOT publicité NOT partenariat
+platform:tiktok AND ml_tags:boycott AND ml_place_mentioned:Morocco
 ```
 
-**Détecter les variations d'un hashtag de campagne :**
+**Surveiller les posts à forte charge émotionnelle sur le football national :**
 ```
-#campagne* OR "ma campagne ?"
-```
-
-**Trouver les avis positifs sur Instagram ou TikTok :**
-```
-(excellent OR génial OR "j'adore" OR incroyable) AND (plateforme:Instagram OR plateforme:TikTok)
+ml_category:Football AND (ml_dominant_emotion:anger OR ml_dominant_emotion:frustration) AND ml_emotional_intensity:highly_emotional
 ```
 
-**Chercher les signalements de bugs ou pannes par les utilisateurs :**
+**Identifier les posts avec peu d'engagement liés à la CAN ou à la CDM :**
 ```
-(bug OR panne OR "ça ne fonctionne pas" OR planté) AND application NOT résolu
+projects.name:"Perception Foot CAN CDM" AND ml_engagement_level:discussion_without_engagement
+```
+
+**Retrouver tous les posts qualifiés par l'équipe sur le projet foot, hors sentiment positif :**
+```
+qualification.status:QUALIFIED AND projects.name:"Perception Foot CAN CDM" NOT ml_sentiment:positive
+```
+
+**Détecter les publications mentionnant des tribunes vides ou une faible affluence :**
+```
+(ml_sector_specific_tag_values.stadium_attendance:"empty stands" OR ml_tags:attendance) AND ml_sector_specific_tag_values.fan_engagement:low
+```
+
+**Trouver les posts de type opinion ou question sur TikTok en arabe :**
+```
+(ml_post_type:question OR ml_post_type:personal_opinion) AND platform:tiktok AND language:ara
 ```
 
 ---
