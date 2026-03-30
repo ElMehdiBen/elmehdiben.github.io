@@ -182,7 +182,7 @@
   <nav class="tab-nav">
     <button class="tab-btn active" id="tab-readmore" onclick="switchTab('readmore')">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-      Read More
+      What is Pulse Check
     </button>
     <button class="tab-btn" id="tab-survey" onclick="switchTab('survey')">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
@@ -492,7 +492,7 @@
     <p style="font-style:italic;color:var(--accent);font-family:'Libre Baskerville',serif;font-size:1rem">If you found this survey relevant, feel free to share it with colleagues. The more perspectives we collect, the richer and more meaningful the insights will be.</p>
     <div style="margin-top:28px;text-align:center;font-size:0.75rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)">Innovation. Guided by Evidence.</div>
     <div class="nav-row" style="justify-content:center;margin-top:28px;">
-      <button class="btn btn-ghost" onclick="switchTab('readmore')">Explore the Research Behind This Survey →</button>
+      <button class="btn btn-ghost" onclick="switchTab('readmore')">← What is Pulse Check</button>
     </div>
   </div>
 
@@ -655,7 +655,7 @@
 
     <div class="rm-cta">
       <p>"Innovation. Guided by Evidence."</p>
-      <button class="btn btn-accent" onclick="switchTab('survey')">← Take the Survey</button>
+      <button class="btn btn-accent" onclick="switchTab('survey')">Take the Survey →</button>
     </div>
 
   </div><!-- /rm-content -->
@@ -781,6 +781,7 @@
   });
 
   // Init
+  document.getElementById('progressFill').style.opacity = '0';
   renderTrack(0);
   document.getElementById('step-0').classList.remove('hidden');
 </script>
